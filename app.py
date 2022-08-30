@@ -29,9 +29,10 @@ HEADER = {
 }
 
 
-@app.route("", methods=['POST', 'GET'])
+@app.route("/", methods=['POST', 'GET'])
 def index():
     if request.method == 'GET':
+        print('OK')
         return 'ok'
     body = request.json
     events = body["events"]
@@ -136,8 +137,9 @@ def index():
     return 'OK'
 
 
-@app.route("/", methods=['POST'])
+@app.route("/callback", methods=['POST'])
 def callback():
+    print('callback')
     signature = request.headers['X-Line-Signature']
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
@@ -225,12 +227,14 @@ def getImageMessage(originalContentUrl):
 
 
 def replyMessage(payload):
-    response = requests.post('https://api.line.me/v2/bot/message/reply', data=json.dumps(payload), headers=HEADER)
+    r = requests.post('https://api.line.me/v2/bot/message/reply', data=json.dumps(payload), headers=HEADER)
+    print(r.content)
     return 'OK'
 
 
 def pushMessage(payload):
-    response = requests.post('https://api.line.me/v2/bot/message/push', data=json.dumps(payload), headers=HEADER)
+    r = requests.post('https://api.line.me/v2/bot/message/push', data=json.dumps(payload), headers=HEADER)
+    print(r.content)
     return 'OK'
 
 
