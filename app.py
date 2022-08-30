@@ -136,7 +136,7 @@ def index():
     return 'OK'
 
 
-@app.route("/callback", methods=['POST'])
+@app.route("/", methods=['POST'])
 def callback():
     signature = request.headers['X-Line-Signature']
     body = request.get_data(as_text=True)
@@ -225,12 +225,12 @@ def getImageMessage(originalContentUrl):
 
 
 def replyMessage(payload):
-    response = {}
+    response = requests.post('https://api.line.me/v2/bot/message/reply', data=json.dumps(payload), headers=headers)
     return 'OK'
 
 
 def pushMessage(payload):
-    response = {}
+    response = requests.post('https://api.line.me/v2/bot/message/push', data=json.dumps(payload), headers=headers)
     return 'OK'
 
 
