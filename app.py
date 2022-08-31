@@ -1,6 +1,4 @@
 from __future__ import unicode_literals
-from email import header
-from wsgiref import headers
 from flask import Flask, request, abort, render_template
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
@@ -172,7 +170,7 @@ def sendTextMessageToMe():
 def getNameEmojiMessage():
     lookUpStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
     productId = "5ac21a8c040ab15980c9b43f"
-    name = "AlexLin"
+    name = "Miles"
     message = dict()
     message["type"] = "text"
     message["text"] = "".join("$" for r in range(len(name)))
@@ -180,9 +178,9 @@ def getNameEmojiMessage():
     for i, nChar in enumerate(name):
         emojis_list.append(
             {
-                "index": i,
-                "productId": productId,
-                "emojiId": f"{lookUpStr.index(nChar) + 1 :03}"
+              "index": i,
+              "productId": productId,
+              "emojiId": f"{lookUpStr.index(nChar) + 1 :03}"
             }
         )
     message["emojis"] = emojis_list
@@ -207,27 +205,28 @@ def getCallCarMessage(data):
 def getPlayStickerMessage():
     message = dict()
     message["type"] = "sticker"
-    message["packageId"] = "6325"
-    message["stickerId"] = "10979907"
+    message["packageId"] = "446"
+    message["stickerId"] = "1988"
     return message
 
 
 def getTaipei101LocationMessage():
-    message = dict()
-    message["type"] = "location"
-    message["title"] = "taipei 101"
-    message["address"] = "110台北市信義區市府路45號"
-    message["latitude"] = "25.0335763"
-    message["longitude"] = "121.5616328"
+    message = {
+      "type": "location",
+      "title": "台北101",
+      "address": "110台北市信義區市府路45號",
+      "latitude": 25.034127,
+      "longitude": 121.5618272
+    }
     return message
 
 
 def getMRTVideoMessage():
-    message = dict()
-    message["video"]
-    message["originalContentUrl"] = F"{end_point}/static/taipei_101_video.mp4"
-    message["previewImageUrl"] = F"{end_point}/static/taipei_101.jpeg"
-
+    message = {
+      "type": "video",
+      "originalContentUrl": F"{end_point}/static/taipei_101_video.mp4",
+      "previewImageUrl": F"{end_point}/static/taipei_101.jpeg"
+    }
     return message
 
 
@@ -248,10 +247,12 @@ def getTaipei101ImageMessage(originalContentUrl=F"{end_point}/static/taipei_101.
 
 
 def getImageMessage(originalContentUrl):
-    message = dict()
-    message["type"] = "image"
-    message["originalContentUrl"] =F"{end_point}/static/taipei_101.jpeg"
-    message["previewImageUrl"] =F"{end_point}/static/taipei_1.jpeg"
+    message = {
+      "type": "image",
+      "originalContentUrl": originalContentUrl,
+      "previewImageUrl": originalContentUrl
+    }
+
     return message
 
 
@@ -276,7 +277,7 @@ def getTotalSentMessageCount():
 def getTodayCovid19Message():
     r = requests.get('https://covid-19.nchc.org.tw/api/covid19?CK=covid-19@nchc.org.tw&querydata=3001&limited=BGD', headers=HEADER)
     data = r.json()[0]
-    date =data['a04']
+    date = data['a04']
     total_count = data['a05']
     count = data['a06']
     return F"日期：{date}, 人數：{count}, 確診總人數：{total_count}"
