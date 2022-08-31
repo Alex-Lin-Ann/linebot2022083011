@@ -1,4 +1,6 @@
 from __future__ import unicode_literals
+from email import header
+from wsgiref import headers
 from flask import Flask, request, abort, render_template
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
@@ -239,14 +241,17 @@ def pushMessage(payload):
 
 
 def getTotalSentMessageCount():
-    response = {}
-    return 0
+    response = requests.get('https://api.line.me/v2/bot/message/delivery/reply', headers=HEADER)
+    print(r.json())
+    return r.json()['totalUsage']
 
 
 def getTodayCovid19Message():
-    date = ""
-    total_count = 0
-    count = 0
+    r = requests.get('https://covid-19.nchc.org.tw/api/covid19?CK=covid-19@nchc.org.tw&querydata=3001&limited=BGD', headers=HEADER)
+    data = r.json()[0]
+    date = r.json['a04']
+    total_count = data['a05']
+    count = data['a06']
     return F"日期：{date}, 人數：{count}, 確診總人數：{total_count}"
 
 
