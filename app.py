@@ -241,7 +241,7 @@ def pushMessage(payload):
 
 
 def getTotalSentMessageCount():
-    response = requests.get('https://api.line.me/v2/bot/message/delivery/reply', headers=HEADER)
+    r = requests.get('https://api.line.me/v2/bot/message/delivery/reply', headers=HEADER)
     print(r.json())
     return r.json()['totalUsage']
 
