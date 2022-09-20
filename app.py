@@ -195,7 +195,7 @@ def getCarouselMessage(data):
           "type": "image_carousel",
           "columns": [
               {
-                "imageUrl": F"{end_point}/static/taipei_101.jpeg",
+                "imageUrl": F"{end_point}/static/cockroach.jpeg",
                 "action": {
                   "type": "postback",
                   "label": "台北101",
@@ -203,7 +203,7 @@ def getCarouselMessage(data):
                 }
               },
               {
-                "imageUrl": F"{end_point}/static/taipei_1.jpeg",
+                "imageUrl": F"{end_point}/static/cockroach.jpeg",
                 "action": {
                   "type": "postback",
                   "label": "台北101",
