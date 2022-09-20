@@ -195,7 +195,7 @@ def getCarouselMessage(data):
           "type": "image_carousel",
           "columns": [
               {
-                "imageUrl": F"{end_point}/static/cockroach.jpg",
+                "imageUrl": F"{end_point}/static/taipei_101.jpeg",
                 "action": {
                   "type": "postback",
                   "label": "台北101",
@@ -203,7 +203,7 @@ def getCarouselMessage(data):
                 }
               },
               {
-                "imageUrl": F"{end_point}/static/cockroach.jpg",
+                "imageUrl": F"{end_point}/static/taipei_1.jpeg",
                 "action": {
                   "type": "postback",
                   "label": "台北101",
@@ -393,7 +393,7 @@ def line_login():
             name = content["displayName"]
             userID = content["userId"]
             pictureURL = content["pictureUrl"]
-            statusMessage = content.get("statusMessage","")
+            statusMessage = content["statusMessage"]
             print(content)
             return render_template('profile.html', name=name, pictureURL=
                                    pictureURL, userID=userID, statusMessage=
