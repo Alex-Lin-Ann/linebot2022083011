@@ -198,7 +198,7 @@ def getCarouselMessage(data):
                 "imageUrl": F"{end_point}/static/cockroach.jpg",
                 "action": {
                   "type": "postback",
-                  "label": "台北101",
+                  "label": "蟑螂",
                   "data": json.dumps(data)
                 }
               },
@@ -206,7 +206,7 @@ def getCarouselMessage(data):
                 "imageUrl": F"{end_point}/static/cockroach.jpg",
                 "action": {
                   "type": "postback",
-                  "label": "台北101",
+                  "label": "蟑螂",
                   "data": json.dumps(data)
                 }
               }
