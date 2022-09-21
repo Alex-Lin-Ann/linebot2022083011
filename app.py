@@ -285,7 +285,7 @@ def getMRTVideoMessage():
     message = {
       "type": "video",
       "originalContentUrl": F"{end_point}/static/taipei_101_video.mp4",
-      "previewImageUrl": F"{end_point}/static/taipei_101.jpeg"
+      "previewImageUrl": F"{end_point}/static/cockroach.jpg"
     }
     return message
 
@@ -302,7 +302,7 @@ def getMRTSoundMessage():
     return message
 
 
-def getTaipei101ImageMessage(originalContentUrl=F"{end_point}/static/taipei_101.jpeg"):
+def getTaipei101ImageMessage(originalContentUrl=F"{end_point}/static/cockroach.jpg"):
     return getImageMessage(originalContentUrl)
 
 
