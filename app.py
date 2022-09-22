@@ -33,7 +33,7 @@ HEADER = {
 def index():
     if request.method == 'GET':
         print('OK')
-        return 'ok'
+        return 'o'
     body = request.json
     events = body["events"]
     print(body)
